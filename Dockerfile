@@ -5,21 +5,34 @@ ARG NYLAS_MYSQL_USER
 ARG NYLAS_MYSQL_PASS
 ARG NYLAS_REDIS_HOST
 ARG NYLAS_REDIS_PORT
-
+RUN apt-get -qq -y install python-software-properties
 RUN apt-get update && apt-get install -y --no-install-recommends \
-		file \
-		g++ \
-		gcc \
 		git \
-		libffi-dev \
-		liblua5.2-dev \
-		libmysqlclient-dev \
-		libpython-dev \
-		libsodium-dev \
-		libssl-dev \
-		libxslt1-dev \
-		pkg-config \
-		python-pip \
+                   mercurial \
+                   wget \
+                   supervisor \
+                   mysql-server \
+                   mysql-client \
+                   python \
+                   python-dev \
+                   python-pip \
+                   python-setuptools \
+                   build-essential \
+                   libmysqlclient-dev \
+                   gcc \
+                   g++ \
+                   libxml2-dev \
+                   libxslt-dev \
+                   lib32z1-dev \
+                   libffi-dev \
+                   pkg-config \
+                   python-lxml \
+                   tmux \
+                   curl \
+                   tnef \
+                   stow \
+                   lua5.2 \
+                   liblua5.2-dev \
 	&& rm -rf /var/lib/apt/lists/*
 # tell pynacl to use system libsodium
 ENV SODIUM_INSTALL system
