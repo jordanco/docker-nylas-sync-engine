@@ -1,4 +1,4 @@
-FROM buildpack-deps:jessie-curl
+FROM buildpack-deps:trusty
 ARG NYLAS_MYSQL_HOST
 ARG NYLAS_MYSQL_PORT
 ARG NYLAS_MYSQL_USER
