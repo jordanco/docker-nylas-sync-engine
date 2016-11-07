@@ -1,4 +1,10 @@
 FROM buildpack-deps:jessie-curl
+ARG NYLAS_MYSQL_HOST
+ARG NYLAS_MYSQL_PORT
+ARG NYLAS_MYSQL_USER
+ARG NYLAS_MYSQL_PASS
+ARG NYLAS_REDIS_HOST
+ARG NYLAS_REDIS_PORT
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		file \
@@ -17,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& rm -rf /var/lib/apt/lists/*
 # tell pynacl to use system libsodium
 ENV SODIUM_INSTALL system
-
+ 
 WORKDIR /opt/sync-engine/
 RUN git clone https://github.com/jordanco/sync-engine.git && rm -rf .git
 #ENV SYNC_VERSION v0.3.0 # 2014 :'(
