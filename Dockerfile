@@ -47,6 +47,6 @@ ADD secrets.yml /etc/inboxapp/secrets-env.yml
 COPY config.json secrets.yml /etc/inboxapp/
 
 USER 1000:1000
-COPY entrypoint.sh /usr/local/bin/
+COPY entrypoint.sh /bin/
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["bash"] # TODO inbox-api or inbox-start
