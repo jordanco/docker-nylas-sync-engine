@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
                    liblua5.2-dev \
 	&& rm -rf /var/lib/apt/lists/*
 # tell pynacl to use system libsodium
-ENV SODIUM_INSTALL system
+#ENV SODIUM_INSTALL system
  
 WORKDIR /opt/sync-engine
 RUN git clone https://github.com/jordanco/sync-engine.git . && rm -rf .git
@@ -51,11 +51,25 @@ RUN git clone https://github.com/jordanco/sync-engine.git . && rm -rf .git
 
 #RUN pip install -r requirements.txt
 #RUN pip install .
-RUN pip install 'pip==8.1.2' 'setuptools>=5.3'
-RUN hash pip 
-RUN pip install 'pip==8.1.2' 'setuptools>=5.3'
-RUN rm -rf /usr/lib/python2.7/dist-packages/setuptools.egg-info
-RUN pip install 'tox'
+RUN mkdir -p /tmp/build
+WORKDIR /tmp/build
+ENV LIBSODIUM_VER=1.0.0
+
+RUN curl -L -O https://github.com/jedisct1/libsodium/releases/download/${LIBSODIUM_VER}/libsodium-${LIBSODIUM_VER}.tar.gz
+RUN echo 'ced1fe3d2066953fea94f307a92f8ae41bf0643739a44309cbe43aa881dbc9a5 *libsodium-1.0.0.tar.gz' | sha256sum -c || exit 1
+RUN tar -xzf libsodium-${LIBSODIUM_VER}.tar.gz
+WORKDIR /tmp/build/libsodium-1.0.0
+RUN ./configure --prefix=/usr/local/stow/libsodium-${LIBSODIUM_VER} &&\
+                  make -j4 &&\
+                  rm -rf /usr/local/stow/libsodium-${LIBSODIUM_VER} &&\
+                  mkdir -p /usr/local/stow/libsodium-${LIBSODIUM_VER} &&\
+                  make install &&\
+                  stow -d /usr/local/stow -R libsodium-${LIBSODIUM_VER} &&\
+                  ldconfig
+WORKDIR /tmp/build
+RUN rm -rf libsodium-${LIBSODIUM_VER} libsodium-${LIBSODIUM_VER}.tar.gz &&\
+     pip install 'pip>=1.5.6' 'setuptools>=5.3' && hash pip && pip install 'pip>=1.5.6' 'setuptools>=5.3' tox &&\
+     rm -rf /usr/lib/python2.7/dist-packages/setuptools.egg-info
 RUN pip install -r requirements.txt && pip install -e .
 RUN useradd inbox && \ mkdir -p /etc/inboxapp
 
