@@ -24,8 +24,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # tell pynacl to use system libsodium
 ENV SODIUM_INSTALL system
  
-WORKDIR /opt/sync-engine/
-RUN git clone https://github.com/jordanco/sync-engine.git && rm -rf .git
+WORKDIR /opt/sync-engine
+RUN git clone https://github.com/jordanco/sync-engine.git . && rm -rf .git
 #ENV SYNC_VERSION v0.3.0 # 2014 :'(
 #ENV SYNC_VERSION d715f4c7c2869b1e51f92af47908a9e011ae8aea
 
