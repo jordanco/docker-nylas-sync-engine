@@ -36,14 +36,15 @@ RUN git clone https://github.com/jordanco/sync-engine.git . && rm -rf .git
 # ugh, NameError: name 'PROTOCOL_SSLv3' is not defined
 #RUN sed -i 's/^gevent==1.0.1/gevent==1.1rc3/' requirements.txt
 
-RUN echo pwd
-RUN ls -la 
-RUN pip install -r requirements.txt
+#RUN pip install -r requirements.txt
+#RUN pip install .
+RUN pip install -r requirements.txt && pip install -e . && \
+    useradd inbox && \ mkdir -p /etc/inboxapp
 
-RUN pip install .
+
 
 #RUN useradd inbox
-RUN mkdir -p /etc/inboxapp
+#RUN mkdir -p /etc/inboxapp
 #ADD config.json /etc/inboxapp/config-env.json
 #ADD secrets.yml /etc/inboxapp/secrets-env.yml
 #RUN chmod 0644 /etc/inboxapp/config-env.json && chmod 0600 /etc/inboxapp/secrets-env.yml && chown -R inbox:inbox /etc/inboxapp
