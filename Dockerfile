@@ -51,7 +51,11 @@ RUN git clone https://github.com/jordanco/sync-engine.git . && rm -rf .git
 
 #RUN pip install -r requirements.txt
 #RUN pip install .
-RUN easy_install -U setuptools
+RUN pip install 'pip==8.1.2' 'setuptools>=5.3'
+RUN hash pip 
+RUN pip install 'pip==8.1.2' 'setuptools>=5.3'
+RUN rm -rf /usr/lib/python2.7/dist-packages/setuptools.egg-info
+RUN pip install 'tox'
 RUN pip install -r requirements.txt && pip install -e .
 RUN useradd inbox && \ mkdir -p /etc/inboxapp
 
