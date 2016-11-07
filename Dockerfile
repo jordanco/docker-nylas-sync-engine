@@ -36,15 +36,20 @@ RUN pip install .
 
 #RUN useradd inbox
 RUN mkdir -p /etc/inboxapp
-ADD config.json /etc/inboxapp/config-env.json
-ADD secrets.yml /etc/inboxapp/secrets-env.yml
+#ADD config.json /etc/inboxapp/config-env.json
+#ADD secrets.yml /etc/inboxapp/secrets-env.yml
 #RUN chmod 0644 /etc/inboxapp/config-env.json && chmod 0600 /etc/inboxapp/secrets-env.yml && chown -R inbox:inbox /etc/inboxapp
 #RUN mkdir -p /var/lib/inboxapp/parts && mkdir -p /var/log/inboxapp && chown inbox:inbox /var/log/inboxapp &&\
 #    chown -R inbox:inbox /var/lib/inboxapp && chown -R inbox:inbox /opt/sync-engine
 
 
-
 COPY config.json secrets.yml /etc/inboxapp/
+RUN sed -i s/"NYLAS_MYSQL_PORT"/"$NYLAS_MYSQL_PORT"/g /etc/inboxapp/config.json
+RUN sed -i s/"NYLAS_MYSQL_HOST"/"$NYLAS_MYSQL_HOST"/g /etc/inboxapp/config.json
+RUN sed -i s/"NYLAS_REDIS_HOST"/"$NYLAS_REDIS_HOST"/g /etc/inboxapp/config.json
+RUN sed -i s/"NYLAS_REDIS_PORT"/"$NYLAS_REDIS_PORT"/g /etc/inboxapp/config.json
+RUN sed -i s/"NYLAS_MYSQL_USER"/"$NYLAS_MYSQL_USER"/g /etc/inboxapp/secrets.yml
+RUN sed -i s/"NYLAS_MYSQL_PASS"/"$NYLAS_MYSQL_PASS"/g /etc/inboxapp/secrets.yml
 
 USER 1000:1000
 COPY entrypoint.sh /bin/
