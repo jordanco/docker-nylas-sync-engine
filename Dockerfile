@@ -36,7 +36,9 @@ RUN git clone https://github.com/jordanco/sync-engine.git && rm -rf .git
 # ugh, NameError: name 'PROTOCOL_SSLv3' is not defined
 #RUN sed -i 's/^gevent==1.0.1/gevent==1.1rc3/' requirements.txt
 
-RUN pip install -r /opt/sync-engine/requirements.txt
+RUN echo pwd
+RUN ls -la 
+RUN pip install -r requirements.txt
 
 RUN pip install .
 
