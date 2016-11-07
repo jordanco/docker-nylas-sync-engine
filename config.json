@@ -1,7 +1,7 @@
 {
 "DATABASE_HOSTS": [
     {
-        "HOSTNAME": $NYLAS_MYSQL_HOST,
+        "HOSTNAME": "$NYLAS_MYSQL_HOST",
         "PORT":$NYLAS_MYSQL_PORT,
         "SHARDS": [
             {
@@ -17,7 +17,7 @@
         ]
     },
     {
-        "HOSTNAME": $NYLAS_MYSQL_HOST,
+        "HOSTNAME": "$NYLAS_MYSQL_HOST",
         "PORT": $NYLAS_MYSQL_PORT,
         "SHARDS": [
             {
@@ -49,7 +49,7 @@
 "LOGLEVEL": 10,
 
 "REDIS_PORT": $NYLAS_REDIS_PORT,
-"REDIS_SHARDS": [$NYLAS_REDIS_HOST],
+"REDIS_SHARDS": ["$NYLAS_REDIS_HOST"],
 
 "ACCOUNT_QUEUE_REDIS_HOSTNAME": "localhost",
 "ACCOUNT_QUEUE_REDIS_DB": 3,
