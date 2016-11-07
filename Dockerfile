@@ -5,7 +5,7 @@ ARG NYLAS_MYSQL_USER
 ARG NYLAS_MYSQL_PASS
 ARG NYLAS_REDIS_HOST
 ARG NYLAS_REDIS_PORT
-RUN apt-get -qq -y install python-software-properties
+#RUN apt-get -qq -y install python-software-properties
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
                    mercurial \
