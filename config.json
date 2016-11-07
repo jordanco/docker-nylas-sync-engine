@@ -1,8 +1,8 @@
 {
 "DATABASE_HOSTS": [
     {
-        "HOSTNAME": "$NYLAS_MYSQL_HOST",
-        "PORT":$NYLAS_MYSQL_PORT,
+        "HOSTNAME": "NYLAS_MYSQL_HOST",
+        "PORT":NYLAS_MYSQL_PORT,
         "SHARDS": [
             {
                 "ID": 0,
@@ -17,8 +17,8 @@
         ]
     },
     {
-        "HOSTNAME": "$NYLAS_MYSQL_HOST",
-        "PORT": $NYLAS_MYSQL_PORT,
+        "HOSTNAME": "NYLAS_MYSQL_HOST",
+        "PORT": NYLAS_MYSQL_PORT,
         "SHARDS": [
             {
                 "ID": 2,
@@ -48,8 +48,8 @@
 "LOGDIR": "/var/log/inboxapp",
 "LOGLEVEL": 10,
 
-"REDIS_PORT": $NYLAS_REDIS_PORT,
-"REDIS_SHARDS": ["$NYLAS_REDIS_HOST"],
+"REDIS_PORT": NYLAS_REDIS_PORT,
+"REDIS_SHARDS": ["NYLAS_REDIS_HOST"],
 
 "ACCOUNT_QUEUE_REDIS_HOSTNAME": "localhost",
 "ACCOUNT_QUEUE_REDIS_DB": 3,
