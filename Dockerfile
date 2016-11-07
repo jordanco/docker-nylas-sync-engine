@@ -59,7 +59,7 @@ RUN rm -rf libsodium-${LIBSODIUM_VER} libsodium-${LIBSODIUM_VER}.tar.gz &&\
      rm -rf /usr/lib/python2.7/dist-packages/setuptools.egg-info
 WORKDIR /opt/sync-engine
 RUN pip install -r requirements.txt && pip install -e .
-RUN useradd inbox && \ mkdir -p /etc/inboxapp
+#RUN useradd inbox && \ mkdir -p /etc/inboxapp
 
 
 
