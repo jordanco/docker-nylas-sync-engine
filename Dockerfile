@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 ENV SODIUM_INSTALL system
 
 WORKDIR /usr/src/sync-engine
-
+#RUN git clone https://github.com/jordanco/sync-engine.git && rm -rf /opt/sync-engine/.git
 #ENV SYNC_VERSION v0.3.0 # 2014 :'(
 ENV SYNC_VERSION d715f4c7c2869b1e51f92af47908a9e011ae8aea
 
