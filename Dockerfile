@@ -1,4 +1,4 @@
-FROM buildpack-deps:precise
+FROM buildpack-deps:trusty
 ARG NYLAS_MYSQL_HOST
 ARG NYLAS_MYSQL_PORT
 ARG NYLAS_MYSQL_USER
@@ -51,8 +51,8 @@ RUN git clone https://github.com/jordanco/sync-engine.git . && rm -rf .git
 
 #RUN pip install -r requirements.txt
 #RUN pip install .
-RUN pip install -r requirements.txt && pip install -e . && \
-    useradd inbox && \ mkdir -p /etc/inboxapp
+RUN pip install -r requirements.txt && pip install -e .
+RUN useradd inbox && \ mkdir -p /etc/inboxapp
 
 
 
