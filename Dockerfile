@@ -1,17 +1,18 @@
-FROM buildpack-deps:trusty
+#FROM buildpack-deps:trusty
+FROM nhurel/ubuntu-s6
 ARG NYLAS_MYSQL_HOST
 ARG NYLAS_MYSQL_PORT
 ARG NYLAS_MYSQL_USER
 ARG NYLAS_MYSQL_PASS
 ARG NYLAS_REDIS_HOST
 ARG NYLAS_REDIS_PORT
-#RUN apt-get -qq -y install python-software-properties
+RUN apt-get -qq -y install python-software-properties
 RUN apt-get update && apt-get install -y --no-install-recommends \
 		git \
                    mercurial \
                    wget \
-                   supervisor \
-                   mysql-server \
+                   #supervisor \
+                   #mysql-server \
                    mysql-client \
                    python \
                    python-dev \
