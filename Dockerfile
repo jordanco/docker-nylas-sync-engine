@@ -81,10 +81,13 @@ RUN sed -i s/"NYLAS_MYSQL_USER"/"$NYLAS_MYSQL_USER"/g /etc/inboxapp/secrets.yml
 RUN sed -i s/"NYLAS_MYSQL_PASS"/"$NYLAS_MYSQL_PASS"/g /etc/inboxapp/secrets.yml
 RUN sed -i s/"NYLAS_MYSQL_HOST"/"$NYLAS_MYSQL_HOST"/g /etc/inboxapp/secrets.yml
 
-COPY entrypoint.sh /bin/
-WORKDIR /bin
-RUN chmod +x /bin/entrypoint.sh
+# HAVE TO FIX ENTRYPOINT BECAUSE IS CREATING DATABASES THAT ALLREADY EXISTS
+#COPY entrypoint.sh /bin/
+#WORKDIR /bin
+#RUN chmod +x /bin/entrypoint.sh
+
 RUN useradd inbox
 USER inbox
-ENTRYPOINT ["entrypoint.sh"]
+
+#ENTRYPOINT ["entrypoint.sh"]
 
