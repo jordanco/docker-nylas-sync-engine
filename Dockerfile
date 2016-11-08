@@ -84,6 +84,7 @@ RUN sed -i s/"NYLAS_MYSQL_HOST"/"$NYLAS_MYSQL_HOST"/g /etc/inboxapp/secrets.yml
 COPY entrypoint.sh /bin/
 WORKDIR /bin
 RUN chmod +x /bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
 RUN useradd inbox
-CMD ["bash"] # TODO inbox-api or inbox-start
+USER inbox
+ENTRYPOINT ["entrypoint.sh"]
+
