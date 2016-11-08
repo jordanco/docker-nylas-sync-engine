@@ -83,5 +83,6 @@ RUN sed -i s/"NYLAS_MYSQL_PASS"/"$NYLAS_MYSQL_PASS"/g /etc/inboxapp/secrets.yml
 USER 1000:1000
 COPY entrypoint.sh /bin/
 WORKDIR /bin
+RUN chmod +x /bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["bash"] # TODO inbox-api or inbox-start
