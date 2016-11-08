@@ -79,7 +79,7 @@ RUN sed -i s/"NYLAS_REDIS_HOST"/"$NYLAS_REDIS_HOST"/g /etc/inboxapp/config.json
 RUN sed -i s/"NYLAS_REDIS_PORT"/"$NYLAS_REDIS_PORT"/g /etc/inboxapp/config.json
 RUN sed -i s/"NYLAS_MYSQL_USER"/"$NYLAS_MYSQL_USER"/g /etc/inboxapp/secrets.yml
 RUN sed -i s/"NYLAS_MYSQL_PASS"/"$NYLAS_MYSQL_PASS"/g /etc/inboxapp/secrets.yml
-RUN sed -i s/"NYLAS_REDIS_HOST"/"$NYLAS_REDIS_HOST"/g /etc/inboxapp/secrets.yml
+RUN sed -i s/"NYLAS_MYSQL_HOST"/"$NYLAS_MYSQL_HOST"/g /etc/inboxapp/secrets.yml
 
 COPY entrypoint.sh /bin/
 WORKDIR /bin
