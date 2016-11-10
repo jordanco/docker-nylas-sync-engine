@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nylas-api-service
+spec:
+  type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 5555
+  selector:
+    app: nylas-api

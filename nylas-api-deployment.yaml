@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Deployment
+metadata:
+    name: nylas-api
+    labels: 
+        app: nylas-api
+spec:
+    replicas: 2
+    template:
+        labels:
+            app: nylas-api
+        spec:
+            containers:
+                name: nylas-api
+                image: gcr.io/nylas-sync-engine-148809/nylas-image
+                command: ['inbox-api']
