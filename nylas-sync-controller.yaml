@@ -8,7 +8,7 @@ spec:
     replicas: 2
     template:
         metadata: 
-            label:
+            labels:
                 app: nylas-sync
         spec:
             containers:
