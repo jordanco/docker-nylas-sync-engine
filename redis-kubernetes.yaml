@@ -1,34 +1,3 @@
-#redis-controller
-apiVersion: v1
-kind: ReplicationController
-metadata:
-  name: redis
-spec:
-  replicas: 1
-  selector:
-    name: redis
-  template:
-    metadata:
-      labels:
-        name: redis
-    spec:
-      containers:
-      - name: redis
-        image: gcr.io/google_containers/redis:v1
-        ports:
-        - containerPort: 6379
-        resources:
-          limits:
-            cpu: "0.1"
-        volumeMounts:
-        - mountPath: /redis-master-data
-          name: data
-      volumes:
-        - name: data
-          emptyDir: {}
-          
-
----
 #redis master
 apiVersion: v1
 kind: Pod
@@ -64,7 +33,52 @@ spec:
     - name: data
       emptyDir: {}
       
----      
+---
+#redis sentinel service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: sentinel
+    role: service
+  name: redis-sentinel
+spec:
+  ports:
+    - port: 26379
+      targetPort: 26379
+  selector:
+    redis-sentinel: "true"
+---
+#redis-controller
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: redis
+spec:
+  replicas: 1
+  selector:
+    name: redis
+  template:
+    metadata:
+      labels:
+        name: redis
+    spec:
+      containers:
+      - name: redis
+        image: gcr.io/google_containers/redis:v1
+        ports:
+        - containerPort: 6379
+        resources:
+          limits:
+            cpu: "0.1"
+        volumeMounts:
+        - mountPath: /redis-master-data
+          name: data
+      volumes:
+        - name: data
+          emptyDir: {}
+          
+---
 #redis sentinel controller
 apiVersion: v1
 kind: ReplicationController
@@ -91,17 +105,3 @@ spec:
           - containerPort: 26379
           
 ---
-#redis sentinel service
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: sentinel
-    role: service
-  name: redis-sentinel
-spec:
-  ports:
-    - port: 26379
-      targetPort: 26379
-  selector:
-    redis-sentinel: "true"
