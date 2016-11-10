@@ -12,6 +12,6 @@ spec:
                 app: nylas-api
         spec:
             containers:
-                name: nylas-api
+            -   name: nylas-api
                 image: gcr.io/nylas-sync-engine-148809/nylas-image
                 command: ['inbox-api']
