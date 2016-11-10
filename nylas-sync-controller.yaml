@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: nylas-sync
+  label:
+    app: nylas-sync
+spec:
+    replicas: 2
+    template:
+        metadata: 
+            name: nylas-sync
+            label:
+                app: nylas-sync
+        spec:
+            containers:
+            -   name: nylas-sync
+                image: gcr.io/nylas-sync-engine-148809/nylas-image
+                command: ['inbox-start']
