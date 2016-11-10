@@ -8,7 +8,6 @@ spec:
     replicas: 2
     template:
         metadata: 
-            name: nylas-sync
             label:
                 app: nylas-sync
         spec:
