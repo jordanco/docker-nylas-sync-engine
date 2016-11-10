@@ -5,10 +5,11 @@ metadata:
     labels: 
         app: nylas-api
 spec:
-    replicas: 2
+    replicas: 3
     template:
-        labels:
-            app: nylas-api
+        metadata:
+            labels:
+                app: nylas-api
         spec:
             containers:
                 name: nylas-api
