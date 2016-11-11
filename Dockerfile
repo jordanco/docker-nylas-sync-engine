@@ -83,6 +83,5 @@ RUN sed -i s/"NYLAS_MYSQL_HOST"/"$NYLAS_MYSQL_HOST"/g /etc/inboxapp/secrets.yml
 
 
 USER inbox
-
+VOLUME /var/lib/inboxapp
 #ENTRYPOINT ["entrypoint.sh"]
-
