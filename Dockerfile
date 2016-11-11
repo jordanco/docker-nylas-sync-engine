@@ -59,17 +59,12 @@ RUN rm -rf libsodium-${LIBSODIUM_VER} libsodium-${LIBSODIUM_VER}.tar.gz &&\
      rm -rf /usr/lib/python2.7/dist-packages/setuptools.egg-info
 WORKDIR /opt/sync-engine
 RUN pip install -r requirements.txt && pip install -e .
-#RUN useradd inbox && \ mkdir -p /etc/inboxapp
 
 
-
-#RUN useradd inbox
-#RUN mkdir -p /etc/inboxapp
-#ADD config.json /etc/inboxapp/config-env.json
-#ADD secrets.yml /etc/inboxapp/secrets-env.yml
-#RUN chmod 0644 /etc/inboxapp/config-env.json && chmod 0600 /etc/inboxapp/secrets-env.yml && chown -R inbox:inbox /etc/inboxapp
-#RUN mkdir -p /var/lib/inboxapp/parts && mkdir -p /var/log/inboxapp && chown inbox:inbox /var/log/inboxapp &&\
-#    chown -R inbox:inbox /var/lib/inboxapp && chown -R inbox:inbox /opt/sync-engine
+RUN useradd inbox
+RUN mkdir -p /etc/inboxapp
+RUN mkdir -p /var/lib/inboxapp/parts && mkdir -p /var/log/inboxapp && chown inbox:inbox /var/log/inboxapp &&\
+    chown -R inbox:inbox /var/lib/inboxapp && chown -R inbox:inbox /opt/sync-engine
 
 
 COPY config.json secrets.yml /etc/inboxapp/
@@ -86,7 +81,7 @@ RUN sed -i s/"NYLAS_MYSQL_HOST"/"$NYLAS_MYSQL_HOST"/g /etc/inboxapp/secrets.yml
 #WORKDIR /bin
 #RUN chmod +x /bin/entrypoint.sh
 
-RUN useradd inbox
+
 USER inbox
 
 #ENTRYPOINT ["entrypoint.sh"]
